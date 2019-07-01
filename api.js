@@ -23,9 +23,9 @@ router.post('/users', async (req, res, next) => {
   }
 });
 
-router.put('/users/:id', async (req, res, next) => {
+router.put('/users/:id', (req, res, next) => {
   try {
-  const upUser = await User.update({
+  User.update({
       name: req.body.name,
       departmentId: req.body.departmentId
   },
@@ -34,7 +34,7 @@ router.put('/users/:id', async (req, res, next) => {
       id: req.params.id
     }
   })
-  res.send(upUser)
+  res.sendStatus(204)
 } catch(ex) {
   next(ex)
 }
@@ -83,6 +83,19 @@ router.put('/departments/:id', async (req, res, next) => {
       }
     })
     res.send(upDept)
+  } catch(ex) {
+    next(ex)
+  }
+})
+
+router.delete('/departments/:id', async (req, res, next) => {
+  try {
+    await Department.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    res.sendStatus(204)
   } catch(ex) {
     next(ex)
   }
