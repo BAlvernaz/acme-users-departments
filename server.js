@@ -3,6 +3,7 @@ const app = express()
 const { syncAndSeed } = require('./db')
 const PORT = process.env.PORT || 3000
 
+syncAndSeed()
 
 app.use(require('cors')());
 app.use(express.urlencoded())

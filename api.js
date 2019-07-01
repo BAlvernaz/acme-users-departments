@@ -75,14 +75,14 @@ router.post('/departments', async (req, res, next) => {
 
 router.put('/departments/:id', async (req, res, next) => {
   try {
-    const upDept = await Department.update({
+  await Department.update({
       name: req.body.name
     }, {
       where: {
         id: req.params.id
       }
     })
-    res.send(upDept)
+    res.sendStatus(204)
   } catch(ex) {
     next(ex)
   }
