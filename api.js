@@ -23,9 +23,9 @@ router.post('/users', async (req, res, next) => {
   }
 });
 
-router.put('/users/:id', (req, res, next) => {
+router.put('/users/:id', async (req, res, next) => {
   try {
-  User.update({
+   await User.update({
       name: req.body.name,
       departmentId: req.body.departmentId
   },
